@@ -26,7 +26,7 @@ public class ProjectController {
     }
 
     @GetMapping("/projects/{projectId}")
-    public Optional<Project> getProject(@PathVariable String projectId){
+    public Project getProject(@PathVariable String projectId){
         return projectService.getProject(projectId);
     }
 }

@@ -1,6 +1,7 @@
 package com.vamsi.todo.service;
 
 import com.vamsi.todo.domain.Project;
+import com.vamsi.todo.exception.NotFoundException;
 import com.vamsi.todo.model.CreateProjectRequest;
 import com.vamsi.todo.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +22,12 @@ public class ProjectService {
         return projectRepository.save(project);
     }
 
-    public List<Project> getAllProjects(){
+    public List<Project> getAllProjects() {
         return projectRepository.findAll();
     }
 
-    public Optional<Project> getProject(String projectId){
-        return projectRepository.findById(projectId);
+    public Project getProject(String projectId) {
+        return projectRepository.findById(projectId).orElseThrow(() -> new NotFoundException("Project not found."));
     }
 
 }
